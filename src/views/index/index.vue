@@ -19,7 +19,7 @@
           </div>
         </el-alert>
       </el-col>
-      <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
         <el-card shadow="never">
           <div slot="header">
             <span>访问量</span>
@@ -27,9 +27,9 @@
           <vab-chart
             :autoresize="true"
             theme="vab-echarts-theme"
-            :options="fwl"
+            :options="pieOption"
           />
-          <div class="bottom">
+          <!-- <div class="bottom">
             <span>
               日均访问量:
 
@@ -43,10 +43,10 @@
                 :decimals="config1.decimals"
               />
             </span>
-          </div>
+          </div> -->
         </el-card>
       </el-col>
-      <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
+      <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
         <el-card shadow="never">
           <div slot="header">
             <span>授权数</span>
@@ -73,7 +73,7 @@
         </el-card>
       </el-col>
 
-      <el-col
+      <!-- <el-col
         v-for="(item, index) in iconList"
         :key="index"
         :xs="12"
@@ -91,7 +91,7 @@
             <p>{{ item.title }}</p>
           </el-card>
         </router-link>
-      </el-col>
+      </el-col> -->
 
       <el-col :xs="24" :sm="24" :md="24" :lg="11" :xl="11">
         <el-card class="card" shadow="never">
@@ -261,6 +261,43 @@
           suffix: '',
           separator: ',',
           duration: 8000,
+        },
+
+        // pie
+        pieOption: {
+          title: {
+            text: '某站点用户访问来源',
+            subtext: '纯属虚构',
+            left: 'center',
+          },
+          tooltip: {
+            trigger: 'item',
+          },
+          legend: {
+            orient: 'vertical',
+            left: 'left',
+          },
+          series: [
+            {
+              name: '访问来源',
+              type: 'pie',
+              radius: '50%',
+              data: [
+                { value: 1048, name: '搜索引擎' },
+                { value: 735, name: '直接访问' },
+                { value: 580, name: '邮件营销' },
+                { value: 484, name: '联盟广告' },
+                { value: 300, name: '视频广告' },
+              ],
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)',
+                },
+              },
+            },
+          ],
         },
 
         //访问量
@@ -631,13 +668,13 @@
         addData()
       }
       addData(true)
-      this.fwl.xAxis[0].data = date
-      this.fwl.series[0].data = data
-      this.timer = setInterval(() => {
-        addData(true)
-        this.fwl.xAxis[0].data = date
-        this.fwl.series[0].data = data
-      }, 3000)
+      // this.fwl.xAxis[0].data = date
+      // this.fwl.series[0].data = data
+      // this.timer = setInterval(() => {
+      //   addData(true)
+      //   this.fwl.xAxis[0].data = date
+      //   this.fwl.series[0].data = data
+      // }, 3000)
     },
     methods: {
       handleClick(e) {
@@ -697,7 +734,7 @@
       .el-card__body {
         .echarts {
           width: 100%;
-          height: 115px;
+          height: 250px;
         }
       }
     }

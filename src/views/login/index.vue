@@ -66,6 +66,7 @@
           </el-button>
           <router-link to="/register">
             <div style="margin-top: 20px">注册</div>
+            <div>test</div>
           </router-link>
         </el-form>
       </el-col>
